@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Калькулятор</title>
+    <style>
+        body {
+            font-family: Arial;
+            max-width: 420px;
+            margin: 20px auto;
+            padding: 15px
+        }
+
+        .tabs {
+            display: flex;
+            gap: 8px
+        }
+
+        .tabs button {
+            flex: 1;
+            padding: 10px;
+            background: #f5f5f5;
+            border: 1px solid #bbb;
+            cursor: pointer;
+        }
+
+
+        .tabs button.active {
+
+            background: #1976d2;
+            color: white;
+
+        }
+
+        .tab {
+            display: none;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-top: 10px
+        }
+
+        .tab.active {
+            display: block
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        td {
+            padding: 6px;
+            border-bottom: 1px solid #ddd
+        }
+
+        input {
+            width: 120px
+        }
+
+        .result {
+            font-weight: bold
+        }
+
+        #debug {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Калькулятор відводів</h2>
+    <div class="tabs">
+        <button class="active" onclick="showTab('offset')">Зміщення</button>
+        <button onclick="showTab('length')">Довжина вузла <b>L</b></button>
+        <button onclick="showTab('neck')">Шийки</button>
+    </div>
+    <div id="offset" class="tab active">
+        <table>
+            <tr>
+                <td>Ширина, W</td>
+                <td><input class="w" value="450"></td>
+            </tr>
+            <tr>
+                <td>Кут, α</td>
+                <td><input class="angle" value="45"></td>
+            </tr>
+            <tr>
+                <td>Вертикальна шийка, h1</td>
+                <td><input class="h1" value="100"></td>
+            </tr>
+            <tr>
+                <td>Вертикальна шийка, h2</td>
+                <td><input class="h2" value="100"></td>
+            </tr>
+            <tr>
+                <td>Зміщення, S</td>
+                <td><input class="s" value="400"></td>
+            </tr>
+        </table>
+        <h3>Результати</h3>
+        <table>
+            <tr>
+                <td>a</td>
+                <td class='result result-a'></td>
+            </tr>
+            <tr>
+                <td>b</td>
+                <td class='result result-b'></td>
+            </tr>
+            <tr>
+                <td>c</td>
+                <td class='result result-c'></td>
+            </tr>
+            <tr>
+                <td>d</td>
+                <td class='result result-d'></td>
+            </tr>
+            <tr>
+                <td>a1</td>
+                <td class='result result-a1'></td>
+            </tr>
+            <tr>
+                <td>c1</td>
+                <td class='result result-c1'></td>
+            </tr>
+            <tr>
+                <td>b1</td>
+                <td class='result result-b1'></td>
+            </tr>
+            <tr>
+                <td>Шийка по зміщенню, h3</td>
+                <td class='result result-h3'></td>
+            </tr>
+            <tr>
+                <td>Шийка по зміщенню, h4</td>
+                <td class='result result-h4'></td>
+            </tr>
+            <tr>
+                <td>Довжина вузла, L</td>
+                <td class='result result-l'></td>
+            </tr>
+        </table>
+    </div>
+    <div id="length" class="tab">
+        <p>Розрахунок довжини вузла <b>L</b> і шийок <b>h3, h4</b> якщо відомо зміщення <b>S</b></p>
+        <table>
+            <tr>
+                <td>Ширина, W</td>
+                <td><input class="w" value="450"></td>
+            </tr>
+            <tr>
+                <td>Кут, α</td>
+                <td><input class="angle" value="45"></td>
+            </tr>
+            <tr>
+                <td>Вертикальна шийка, h1</td>
+                <td><input class="h1" value="100"></td>
+            </tr>
+            <tr>
+                <td>Вертикальна шийка, h2</td>
+                <td><input class="h2" value="100"></td>
+            </tr>
+            <tr>
+                <td>Зміщення, S</td>
+                <td><input class="s" value="400"></td>
+            </tr>
+        </table>
+        <h3>Результати</h3>
+        <label>
+            <input type="checkbox" id="debugMode">
+            Показувати проміжні розрахунки
+        </label>
+        <table>
+            <tbody id="debug">
+                <tr>
+                    <td>a</td>
+                    <td class='result result-a'></td>
+                </tr>
+                <tr>
+                    <td>b</td>
+                    <td class='result result-b'></td>
+                </tr>
+                <tr>
+                    <td>c</td>
+                    <td class='result result-c'></td>
+                </tr>
+                <tr>
+                    <td>d</td>
+                    <td class='result result-d'></td>
+                </tr>
+                <tr>
+                    <td>a1</td>
+                    <td class='result result-a1'></td>
+                </tr>
+                <tr>
+                    <td>c1</td>
+                    <td class='result result-c1'></td>
+                </tr>
+                <tr>
+                    <td>b1</td>
+                    <td class='result result-b1'></td>
+                </tr>
+            </tbody>
+            <tr>
+                <td>Шийка по зміщенню, h3</td>
+                <td class='result result-h3'></td>
+            </tr>
+            <tr>
+                <td>Шийка по зміщенню, h4</td>
+                <td class='result result-h4'></td>
+            </tr>
+            <tr>
+                <td>Довжина вузла, L</td>
+                <td class='result result-l'></td>
+            </tr>
+        </table>
+    </div>
+    <div id="neck" class="tab">
+        <p>Тут буде окремий калькулятор.</p>
+    </div>
+    <script>
+        alert("JS працює");
+
+        function showTab(tabId) {
+
+            document.querySelectorAll(".tab").forEach(tab => {
+                tab.classList.remove("active");
+            });
+
+            document.querySelectorAll(".tabs button").forEach(button => {
+                button.classList.remove("active");
+            });
+
+            document.getElementById(tabId).classList.add("active");
+
+            document
+                .querySelector(`button[onclick="showTab('${tabId}')"]`)
+                .classList.add("active");
+
+        }
+
+        document.getElementById("debugMode").addEventListener("change", function () {
+            document.getElementById("debug").style.display =
+                this.checked ? "table-row-group" : "none";
+        });
+
+        function round(value) {
+            return Math.ceil(value * 10) / 10;
+        }
+
+        function setResult(root, className, value) {
+            root.querySelector(className).textContent = value;
+        }
+
+        function calc(root) {
+            const W = +root.querySelector('.w').value || 0;
+            const angle = +root.querySelector('.angle').value || 0;
+            const h1 = +root.querySelector('.h1').value || 0;
+            const h2 = +root.querySelector('.h2').value || 0;
+            const S = +root.querySelector('.s').value || 0;
+            const rad = angle * Math.PI / 180;
+            const c = W;
+            const a = round(c * Math.cos(rad));
+            const b = round(c * Math.sin(rad));
+            const d = round(c - a);
+            const a1 = round(S - d);
+            const c1 = round(a1 / Math.sin(rad));
+            const b1 = round(c1 * Math.cos(rad));
+            const h3 = round(c1 / 2);
+            const h4 = h3;
+            const L = round(h1 + h2 + b + b1);
+
+            setResult(root, ".result-a", a);
+            setResult(root, ".result-b", b);
+            setResult(root, ".result-c", c);
+            setResult(root, ".result-d", d);
+            setResult(root, ".result-a1", a1);
+            setResult(root, ".result-b1", b1);
+            setResult(root, ".result-c1", c1);
+            setResult(root, ".result-h3", h3);
+            setResult(root, ".result-h4", h4);
+            setResult(root, ".result-l", L);
+        }
+
+        document.querySelectorAll(".tab").forEach(tab => {
+
+            const inputs = tab.querySelectorAll("input");
+
+            if (!inputs.length) {
+                return;
+            }
+
+            inputs.forEach(input => {
+                input.addEventListener("input", () => calc(tab));
+            });
+
+            calc(tab);
+
+        });
+
+    </script>
+</body>
+
+</html>
