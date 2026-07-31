@@ -15,7 +15,20 @@
         <button onclick="showTab('length')">Довжина вузла <b>L</b></button>
         <button onclick="showTab('neck')">Шийки</button>
     </div>
-    <img src="images/offset.png" alt="offset" class="offset">
+    <div class="image-container">
+        <label>
+            <input type="checkbox" id="imageMode">
+            По шийкам / По радіусу
+        </label>
+        <div class="image-wrapper" id="neckModeWrapper">
+            <img src="images/neck-detail.png" alt="neck-detail" class="offset" id="neckDetail">
+            <img src="images/neck-simple.png" alt="neck-simple" class="offset" id="neckSimple">
+        </div>
+        <div class="image-wrapper" id="radiusModeWrapper">
+            <img src="images/radius-detail.png" alt="radius-detail" class="offset" id="radiusDetail">
+            <img src="images/radius-simple.png" alt="radius-simple" class="offset" id="radiusSimple">
+        </div>
+    </div>
     <div id="offset" class="tab active">
         <table>
             <tr>
@@ -46,34 +59,34 @@
         </label>
         <table>
             <tbody id="debug">
-            <tr>
-                <td>a</td>
-                <td class='result result-a'></td>
-            </tr>
-            <tr>
-                <td>b</td>
-                <td class='result result-b'></td>
-            </tr>
-            <tr>
-                <td>c</td>
-                <td class='result result-c'></td>
-            </tr>
-            <tr>
-                <td>d</td>
-                <td class='result result-d'></td>
-            </tr>
-            <tr>
-                <td>a1</td>
-                <td class='result result-a1'></td>
-            </tr>
-            <tr>
-                <td>c1</td>
-                <td class='result result-c1'></td>
-            </tr>
-            <tr>
-                <td>b1</td>
-                <td class='result result-b1'></td>
-            </tr>
+                <tr>
+                    <td>a</td>
+                    <td class='result result-a'></td>
+                </tr>
+                <tr>
+                    <td>b</td>
+                    <td class='result result-b'></td>
+                </tr>
+                <tr>
+                    <td>c</td>
+                    <td class='result result-c'></td>
+                </tr>
+                <tr>
+                    <td>d</td>
+                    <td class='result result-d'></td>
+                </tr>
+                <tr>
+                    <td>a1</td>
+                    <td class='result result-a1'></td>
+                </tr>
+                <tr>
+                    <td>c1</td>
+                    <td class='result result-c1'></td>
+                </tr>
+                <tr>
+                    <td>b1</td>
+                    <td class='result result-b1'></td>
+                </tr>
             </tbody>
             <tr>
                 <td>Шийка по зміщенню, h3</td>

@@ -1,60 +1,67 @@
 body {
-            font-family: Arial;
-            max-width: 420px;
-            margin: 20px auto;
-            padding: 15px
-        }
+    font-family: Arial;
+    max-width: 420px;
+    margin: 20px auto;
+    padding: 15px
+}
 
-        .tabs {
-            display: flex;
-            gap: 8px
-        }
+.tabs {
+    display: flex;
+    gap: 8px
+}
 
-        .tabs button {
-            flex: 1;
-            padding: 10px;
-            background: #f5f5f5;
-            border: 1px solid #bbb;
-            cursor: pointer;
-        }
+.tabs button {
+    flex: 1;
+    padding: 10px;
+    background: #f5f5f5;
+    border: 1px solid #bbb;
+    cursor: pointer;
+}
 
 
-        .tabs button.active {
+.tabs button.active {
 
-            background: #1976d2;
-            color: white;
+    background: #1976d2;
+    color: white;
 
-        }
+}
 
-        .tab {
-            display: none;
-            border: 1px solid #ccc;
-            padding: 15px;
-            margin-top: 10px
-        }
+.tab {
+    display: none;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-top: 10px
+}
 
-        .tab.active {
-            display: block
-        }
+.tab.active {
+    display: block
+}
 
-        table {
-            width: 100%;
-            border-collapse: collapse
-        }
+table {
+    width: 100%;
+    border-collapse: collapse
+}
 
-        td {
-            padding: 6px;
-            border-bottom: 1px solid #ddd
-        }
+td {
+    padding: 6px;
+    border-bottom: 1px solid #ddd
+}
 
-        input {
-            width: 120px
-        }
+input {
+    width: 120px
+}
 
-        .result {
-            font-weight: bold
-        }
+.result {
+    font-weight: bold
+}
 
-        #debug {
-            display: none;
-        }
+.offset {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 15px 0;
+}
+
+#debug {
+    display: none;
+}

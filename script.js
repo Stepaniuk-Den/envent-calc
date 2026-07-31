@@ -1,76 +1,87 @@
- function showTab(tabId) {
+function showTab(tabId) {
 
-            document.querySelectorAll(".tab").forEach(tab => {
-                tab.classList.remove("active");
-            });
+    document.querySelectorAll(".tab").forEach(tab => {
+        tab.classList.remove("active");
+    });
 
-            document.querySelectorAll(".tabs button").forEach(button => {
-                button.classList.remove("active");
-            });
+    document.querySelectorAll(".tabs button").forEach(button => {
+        button.classList.remove("active");
+    });
 
-            document.getElementById(tabId).classList.add("active");
+    document.getElementById(tabId).classList.add("active");
 
-            document
-                .querySelector(`button[onclick="showTab('${tabId}')"]`)
-                .classList.add("active");
+    document
+        .querySelector(`button[onclick="showTab('${tabId}')"]`)
+        .classList.add("active");
 
-        }
+}
 
-        document.getElementById("debugMode").addEventListener("change", function () {
-            document.getElementById("debug").style.display =
-                this.checked ? "table-row-group" : "none";
-        });
+document.getElementById("debugMode").addEventListener("change", function () {
+    document.getElementById("debug").style.display =
+        this.checked ? "table-row-group" : "none";
+    document.getElementById("neckDetail").style.display =
+        this.checked ? "block" : "none";
+    document.getElementById("radiusDetail").style.display =
+        this.checked ? "block" : "none";
+});
 
-        function round(value) {
-            return Math.ceil(value * 10) / 10;
-        }
+document.getElementById("imageMode").addEventListener("change", function () {
+    document.getElementById("neckModeWrapper").style.display =
+        this.checked ? "block" : "none";
+    document.getElementById("radiusModeWrapper").style.display =
+        this.checked ? "none" : "block";
+});
 
-        function setResult(root, className, value) {
-            root.querySelector(className).textContent = value;
-        }
+function round(value) {
+    return Math.ceil(value * 10) / 10;
+}
 
-        function calc(root) {
-            const W = +root.querySelector('.w').value || 0;
-            const angle = +root.querySelector('.angle').value || 0;
-            const h1 = +root.querySelector('.h1').value || 0;
-            const h2 = +root.querySelector('.h2').value || 0;
-            const S = +root.querySelector('.s').value || 0;
-            const rad = angle * Math.PI / 180;
-            const c = W;
-            const a = round(c * Math.cos(rad));
-            const b = round(c * Math.sin(rad));
-            const d = round(c - a);
-            const a1 = round(S - d);
-            const c1 = round(a1 / Math.sin(rad));
-            const b1 = round(c1 * Math.cos(rad));
-            const h3 = round(c1 / 2);
-            const h4 = h3;
-            const L = round(h1 + h2 + b + b1);
+function setResult(root, className, value) {
+    root.querySelector(className).textContent = value;
+}
 
-            setResult(root, ".result-a", a);
-            setResult(root, ".result-b", b);
-            setResult(root, ".result-c", c);
-            setResult(root, ".result-d", d);
-            setResult(root, ".result-a1", a1);
-            setResult(root, ".result-b1", b1);
-            setResult(root, ".result-c1", c1);
-            setResult(root, ".result-h3", h3);
-            setResult(root, ".result-h4", h4);
-            setResult(root, ".result-l", L);
-        }
+function calc(root) {
+    const W = +root.querySelector('.w').value || 0;
+    const angle = +root.querySelector('.angle').value || 0;
+    const h1 = +root.querySelector('.h1').value || 0;
+    const h2 = +root.querySelector('.h2').value || 0;
+    const S = +root.querySelector('.s').value || 0;
+    const rad = angle * Math.PI / 180;
+    const c = W;
+    const a = round(c * Math.cos(rad));
+    const b = round(c * Math.sin(rad));
+    const d = round(c - a);
+    const a1 = round(S - d);
+    const c1 = round(a1 / Math.sin(rad));
+    const b1 = round(c1 * Math.cos(rad));
+    const h3 = round(c1 / 2);
+    const h4 = h3;
+    const L = round(h1 + h2 + b + b1);
 
-        document.querySelectorAll(".tab").forEach(tab => {
+    setResult(root, ".result-a", a);
+    setResult(root, ".result-b", b);
+    setResult(root, ".result-c", c);
+    setResult(root, ".result-d", d);
+    setResult(root, ".result-a1", a1);
+    setResult(root, ".result-b1", b1);
+    setResult(root, ".result-c1", c1);
+    setResult(root, ".result-h3", h3);
+    setResult(root, ".result-h4", h4);
+    setResult(root, ".result-l", L);
+}
 
-            const inputs = tab.querySelectorAll("input");
+document.querySelectorAll(".tab").forEach(tab => {
 
-            if (!inputs.length) {
-                return;
-            }
+    const inputs = tab.querySelectorAll("input");
 
-            inputs.forEach(input => {
-                input.addEventListener("input", () => calc(tab));
-            });
+    if (!inputs.length) {
+        return;
+    }
 
-            calc(tab);
+    inputs.forEach(input => {
+        input.addEventListener("input", () => calc(tab));
+    });
 
-        });
+    calc(tab);
+
+});
