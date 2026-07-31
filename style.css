@@ -62,6 +62,10 @@ input {
     margin: 15px 0;
 }
 
+.image-wrapper {
+    display: none;
+}
+
 #debug {
     display: none;
 }
